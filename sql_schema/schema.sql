@@ -12,7 +12,7 @@ GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA pizzeria TO pizzeria;
 
 -- DROP TABLE pizzeria.dict_pizza_sizes;
 
-CREATE TABLE pizzeria.dict_pizza_sizes (
+CREATE TABLE IF NOT EXISTS pizzeria.dict_pizza_sizes (
 	pizza_diameter int2 NOT NULL,
 	"size" varchar(100) NOT NULL,
 	CONSTRAINT dict_pizza_sizes_pk PRIMARY KEY (size)
@@ -25,7 +25,7 @@ CREATE TABLE pizzeria.dict_pizza_sizes (
 
 -- DROP TABLE pizzeria.dict_pizza_types;
 
-CREATE TABLE pizzeria.dict_pizza_types (
+CREATE TABLE IF NOT EXISTS pizzeria.dict_pizza_types (
 	pizza_id uuid NOT NULL,
 	pizza_type varchar(100) NOT NULL,
 	price_per_cm numeric(15,2) NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE pizzeria.dict_pizza_types (
 
 -- DROP TABLE pizzeria."order";
 
-CREATE TABLE pizzeria."order" (
+CREATE TABLE IF NOT EXISTS pizzeria."order" (
 	customer_id uuid NOT NULL,
 	order_id uuid NOT NULL,
 	date_of_order timestamp NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE pizzeria."order" (
 
 -- DROP TABLE pizzeria.roles;
 
-CREATE TABLE pizzeria.roles (
+CREATE TABLE IF NOT EXISTS pizzeria.roles (
 	"role" varchar(100) NOT NULL,
 	CONSTRAINT roles_pk PRIMARY KEY (role)
 );
@@ -66,7 +66,7 @@ CREATE TABLE pizzeria.roles (
 
 -- DROP TABLE pizzeria."transaction";
 
-CREATE TABLE pizzeria."transaction" (
+CREATE TABLE IF NOT EXISTS pizzeria."transaction" (
 	transaction_id uuid NOT NULL,
 	payment_received bool NOT NULL,
 	CONSTRAINT transaction_pk PRIMARY KEY (transaction_id)
@@ -79,7 +79,7 @@ CREATE TABLE pizzeria."transaction" (
 
 -- DROP TABLE pizzeria.basket;
 
-CREATE TABLE pizzeria.basket (
+CREATE TABLE IF NOT EXISTS pizzeria.basket (
 	order_id uuid NOT NULL,
 	quantity int2 NOT NULL,
 	item_id uuid NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE pizzeria.basket (
 
 -- DROP TABLE pizzeria."user";
 
-CREATE TABLE pizzeria."user" (
+CREATE TABLE IF NOT EXISTS pizzeria."user" (
 	user_id uuid NOT NULL,
 	login varchar(100) NOT NULL,
 	active bool NOT NULL DEFAULT true,
@@ -112,7 +112,7 @@ CREATE TABLE pizzeria."user" (
 
 -- DROP TABLE pizzeria.user_info;
 
-CREATE TABLE pizzeria.user_info (
+CREATE TABLE IF NOT EXISTS pizzeria.user_info (
 	user_id uuid NOT NULL,
 	first_name varchar(100) NOT NULL,
 	surname varchar(100) NOT NULL,
