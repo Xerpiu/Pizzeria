@@ -5,8 +5,9 @@ import pj.pizzeria.repos.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class ProductService
@@ -38,19 +39,12 @@ public class ProductService
         return productRepository.findAll();
     }
 
-    public Iterable<Product> getAllProductsType(String type)
+    public Iterable<Product> getAllProductsByType(String type)
     {
-        ArrayList<Product> productsKind = new ArrayList<Product>();
-
-        for (Product p : getAllProducts())
-        {
-            if(p.getType().equals(type))
-            {
-                productsKind.add(p);
-            }
-        }
-
-        return productsKind;
+        return StreamSupport
+                .stream(getAllProducts().spliterator(), false)
+                .filter(product -> product.getType().equals(type))
+                .collect(Collectors.toList());
     }
 
     public boolean hasProductWithId(Integer id)
