@@ -1,5 +1,8 @@
 # Default ignored files
-/shelf/
-/workspace.xml
-
-/.idea/
+HELP.md
+.mvn
+mvnw
+mvnw.cmd
+*/.idea/workspace.xml
+*/.idea/tasks.xml
+target/
