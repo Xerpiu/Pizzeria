@@ -50,7 +50,7 @@ public class ProductController
     {
         Optional<Product> p = productService.getProductById(id);
 
-        return productService.getProductById(id);
+        return p;
     }
 
     @GetMapping("/getProducts")
@@ -64,13 +64,13 @@ public class ProductController
     @ResponseBody
     public Iterable<? extends Product> getBeverages()
     {
-        return productService.getAllProductsType("Beverage");
+        return productService.getAllProductsByType("Beverage");
     }
 
     @GetMapping("/getPizzas")
     @ResponseBody
     public Iterable<? extends Product> getPizzas()
     {
-        return productService.getAllProductsType("Pizza");
+        return productService.getAllProductsByType("Pizza");
     }
 }
